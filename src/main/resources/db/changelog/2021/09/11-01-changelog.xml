@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1631355609537-1" author="levmalinovski">
+        <createTable tableName="category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1631355609537-2" author="levmalinovski">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="category"
+                                 constraintName="FK_CATEGORY_ON_PARENT" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="levmalinovski" id="1631355609537-3">
+        <insert tableName="category">
+            <column name="id" value="1"/>
+            <column name="name" value="Manufacturing"/>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="19"/>
+            <column name="name" value="Construction materials"/>
+            <column name="parent_id" value="1"/>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="18"/>
+            <column name="name" value="Electronics and Optics"/>
+            <column name="parent_id" value="1"/>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="6"/>
+            <column name="name" value="Food and Beverage"/>
+            <column name="parent_id" value="1"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="342"/>
+            <column name="name" value="Bakery &amp; confectionery products"/>
+            <column name="parent_id" value="6"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

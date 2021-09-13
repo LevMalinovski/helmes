@@ -1,0 +1,12 @@
+version: '2.2'
+services:
+  postgres:
+    container_name: helmes_postgres
+    image: postgres:11.2
+    environment:
+      - "POSTGRES_ROOT_PASSWORD=helmes_pass"
+      - "POSTGRES_DB=helmes"
+      - "POSTGRES_USER=helmes_user"
+      - "POSTGRES_PASSWORD=helmes_pass"
+    ports:
+      - "5532:5432"
